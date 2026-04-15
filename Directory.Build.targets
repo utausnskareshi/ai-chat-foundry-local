@@ -1,0 +1,20 @@
+<Project>
+
+  <!--
+    Replacement for the disabled Microsoft.AI.Foundry.Local.Core.WinML build targets.
+    Only applies to projects that reference the Foundry Local SDK (ServiceHost).
+  -->
+
+  <PropertyGroup>
+    <_FoundryLocalNativePath>$(NuGetPackageRoot)microsoft.ai.foundry.local.core.winml\1.0.0\runtimes\$(RuntimeIdentifier)\native</_FoundryLocalNativePath>
+  </PropertyGroup>
+
+  <ItemGroup Condition="Exists('$(_FoundryLocalNativePath)')">
+    <Content Include="$(_FoundryLocalNativePath)\*.*">
+      <Link>%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+  </ItemGroup>
+
+</Project>
